@@ -6,11 +6,13 @@ contract ERC721 {
     mapping(uint256 => address) internal _owners;
     //owner address ---> operator address
     mapping(address => mapping(address => bool)) private _operatorApprovals;
+    mapping(uint256 => address) private _tokenApprovals;
+
     constructor() {
         
     }
     //event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
-    //event Approval(address indexed _owner, address indexed _approved, uint256 indexed _tokenId);
+    event Approval(address indexed _owner, address indexed _approved, uint256 indexed _tokenId);
     
     event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);
     
@@ -50,11 +52,30 @@ contract ERC721 {
     }
 
 
+    /// @title approve
+	/// @author fribas
+	/// @notice updates an approved address for an nft.
+
+    function approve(address _approved, uint256 _tokenId) external payable{
+        address owner = ownerOf(_tokenId);
+        require(msg.sender = owner || isApprovedForAll(owner,msg.sender),"Msg.sender is not the owner or an approved operator.");
+        _tokenApprovals[_tokenId] = _approved
+        emit Approval(owner,_approved,_tokenId)
+    }
+
+    /// @title approve
+	/// @author fribas
+	/// @notice Gets apprved address for a single NFT.
+    function getApproved(uint256 _tokenId) external view returns (address){
+        require(_owners[_tokenId] !=address(0),"TokenId does not exists");
+        return _tokenApprovals[_tokenId];
+    }
+
+
     //function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;
     //function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;
     //function transferFrom(address _from, address _to, uint256 _tokenId) external payable;
-    //function approve(address _approved, uint256 _tokenId) external payable;
+    
     
 
-    //function getApproved(uint256 _tokenId) external view returns (address);
 }
