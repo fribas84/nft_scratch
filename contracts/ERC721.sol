@@ -4,14 +4,15 @@ pragma solidity ˆ0.8.2;
 contract ERC721 {
     mapping(address => uint256) internal _balances;
     mapping(uint256 => address) internal _owners;
+    //owner address ---> operator address
     mapping(address => mapping(address => bool)) private _operatorApprovals;
-
     constructor() {
         
     }
     //event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
     //event Approval(address indexed _owner, address indexed _approved, uint256 indexed _tokenId);
-    //event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);
+    
+    event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);
     
     /// @title balanceOf
     /// @author fribas
@@ -32,18 +33,28 @@ contract ERC721 {
         return owner;
     }
 
-    //function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;
-    //function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;
-    //function transferFrom(address _from, address _to, uint256 _tokenId) external payable;
-    //function approve(address _approved, uint256 _tokenId) external payable;
-    
     /// @title setApprovalForAll 
 	/// @author fribas
 	/// @notice Enables or disables an operator to manage all of msg.sender assets.
 
     function setApprovalForAll(address _operator, bool _approved) external {
-        
+        _operatorApprovals[msg.sender][_operator] = _approved;
+        emit ApprovalForAll(msg.sender,_operator,_approved);
     }
+    
+    /// @title isApprovedForAll 
+	/// @author fribas
+	/// @notice Checks if an address is an operator for another address.
+    function isApprovedForAll(address _owner, address _operator) external view returns (bool){
+        return _operatorApprovals[_owner][_operator];
+    }
+
+
+    //function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;
+    //function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;
+    //function transferFrom(address _from, address _to, uint256 _tokenId) external payable;
+    //function approve(address _approved, uint256 _tokenId) external payable;
+    
+
     //function getApproved(uint256 _tokenId) external view returns (address);
-    //function isApprovedForAll(address _owner, address _operator) external view returns (bool);
 }
