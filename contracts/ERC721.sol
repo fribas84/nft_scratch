@@ -11,11 +11,15 @@ contract ERC721 {
     constructor() {
         
     }
-    //event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
+
+    event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
     event Approval(address indexed _owner, address indexed _approved, uint256 indexed _tokenId);
-    
     event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);
     
+    modifier isValidTokenId (uint256 _tokenId) {
+        require(_owners[_tokenId] != address(0),"TokenID does not exits");
+        _;
+    }
     /// @title balanceOf
     /// @author fribas
     /// @notice Returns the number of NFTs assigned to an owner 
@@ -29,10 +33,8 @@ contract ERC721 {
 	/// @author fribas
 	/// @notice Finds the owner of an NFT
 	/// @dev If the token is assigned to zero address, the TokenID will be considered invalid.
-    function ownerOf(uint256 _tokenId) external view returns (address){
-        address owner = _owners[_tokenId];
-        require(owner != address(0),"TokenID does not exits")
-        return owner;
+    function ownerOf(uint256 _tokenId) external view isValidTokenId(_tokenId) returns (address){
+        return _owners[_tokenId];;
     }
 
     /// @title setApprovalForAll 
@@ -66,15 +68,39 @@ contract ERC721 {
     /// @title approve
 	/// @author fribas
 	/// @notice Gets apprved address for a single NFT.
-    function getApproved(uint256 _tokenId) external view returns (address){
-        require(_owners[_tokenId] !=address(0),"TokenId does not exists");
+    function getApproved(uint256 _tokenId) external view isValidTokenId(_tokenId) returns (address){
         return _tokenApprovals[_tokenId];
+    }
+
+    /// @title transferFrom
+	/// @author fribas
+	/// @notice transfer ownership of an NFT
+
+    function transferFrom(address _from, address _to, uint256 _tokenId) external payable isValidTokenId(_tokenId) {
+        address owner = ownerOf(_tokenId);
+        require(
+            msg.sender == owner ||
+            getApproved(_tokenId) == msg.sender ||
+            isApprovedForAll(owner,msg.sender),
+            "Msg.sender is not the owner or approved for transfer."
+        );
+        require(owner == _from,"From address is not the owner.");
+        require(_to != address(0),"Address is zero.")
+        //clear old approvals
+        approve(address(0),_tokenId);
+
+        //update balances
+        _balances[_from] -= 1;
+        _balances[_to] += 1;
+        // changing ownership
+        _owners[_tokenId] = _to;
+
+        emit Transfer(_from,_to);
     }
 
 
     //function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;
     //function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;
-    //function transferFrom(address _from, address _to, uint256 _tokenId) external payable;
     
     
 
