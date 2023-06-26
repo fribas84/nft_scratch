@@ -98,10 +98,25 @@ contract ERC721 {
         emit Transfer(_from,_to);
     }
 
-
-    //function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;
-    //function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;
+    /// @title safeTransferFrom 
+	/// @author fribas
+	/// @notice checks if onERC721Received is implemented when sending to SC
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes _data) external payable {
+        transferFrom(_from,_to,_tokenId);
+        require(_checkOnERC721Received,"Receiver not implemented");
+    }
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable {
+        safeTransferFrom(_from,_to,_tokenId,"");
+    }
     
+
+    /// @title _checkOnERC721Received
+	/// @author fribas
+	/// @notice Simplified function. 
+
+    function _checkOnERC721Received() internal returns(bool){
+        return true;
+    }
     
 
 }
