@@ -118,5 +118,12 @@ contract ERC721 {
         return true;
     }
     
+  	/// @title supportsInterface
+	/// @author fribas
+	/// @notice query if contract implements another interface
+	/// @dev the ERC-165 identifier for this interface is 0x80ac58cd.
 
+    function supportsInterface(bytes4 _interfaceId) public pure virtual retuns(bool){
+        return interfaceId == 0x80ac58cd;
+    }
 }
