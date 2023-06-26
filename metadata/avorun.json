@@ -1,0 +1,51 @@
+{
+    "name": "Avo Run",
+    "description": "Introducing Avo Run, the mighty superhero avocado with lightning-fast speed and incredible strength.",
+    "image": "https://ipfs.io/ipfs/QmYnBsdFTPbWq7f4VdxzmYz7vLSLCM4o8Edm6Cw8z8hquj",
+    "attributes": [
+      {
+        "trait_type": "Base",
+        "value": "Avocado"
+      },
+      {
+        "trait_type": "Superpower",
+        "value": "Super Speed"
+      },
+      {
+        "trait_type": "Strength",
+        "value": "95"
+      },
+      {
+        "trait_type": "Agility",
+        "value": "92"
+      },
+      {
+        "trait_type": "Endurance",
+        "value": "88"
+      },
+      {
+        "trait_type": "Intelligence",
+        "value": "85"
+      },
+      {
+        "trait_type": "Cuteness",
+        "value": "95"
+      },
+      {
+        "display_type": "boost_number", 
+        "trait_type": "Taste Power", 
+        "value": 90
+      }, 
+      {
+        "display_type": "boost_percentage", 
+        "trait_type": "Hipster Power", 
+        "value": 90
+      },
+      {
+        "display_type": "number", 
+        "trait_type": "Generation", 
+        "value": 1
+      }
+    ]
+  }
+  

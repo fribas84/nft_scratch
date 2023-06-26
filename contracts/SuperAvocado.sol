@@ -1,4 +1,5 @@
-pragma solidity ˆ0.8.2
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.2;
 
 import "./ERC721.sol";
 
@@ -15,23 +16,17 @@ contract SuperAvocado is ERC721 {
         symbol = _symbol;
     } 
 
-    /// @title tokenURI
-	/// @author fribas
-    /// @notice Returns URL that points the metadata
 
-    function tokenURI(uint256 _tokenId) public view isValidTokenId returns(string memory){ 
+    function tokenURI(uint256 _tokenId) public view isValidTokenId(_tokenId) returns(string memory){ 
         return _tokenURIs[_tokenId];
     }
 
-    /// @title mint
-    /// @author fribas
-    /// @notice Creates a new NFT inside the collection
     function mint(string memory _tokenURI) public {
 
         tokenCount +=1; //tokenID
         _balances[msg.sender] +=1;
         _owners[tokenCount] = msg.sender;
-        _tokenURIs[_tokenId]= _tokenURI; 
+        _tokenURIs[tokenCount]= _tokenURI; 
 
         emit Transfer(address(0),msg.sender,tokenCount); //event that indicates the mint
     }
