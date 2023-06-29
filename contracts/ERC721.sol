@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
+import "hardhat/console.sol";
 
 contract ERC721 {
     mapping(address => uint256) internal _balances;
@@ -21,6 +22,14 @@ contract ERC721 {
         _;
     }
     
+    modifier isValidOperator(uint256 _tokenId){
+        require(
+            msg.sender == ownerOf(_tokenId) || msg.sender == getApproved(_tokenId)  || (isApprovedForAll(ownerOf(_tokenId),msg.sender)),
+            "Msg.sender is not the owner or approved for operation."
+        );
+        _;
+    }
+
     function balanceOf(address _owner) external view returns (uint256){
         require(_owner !=address(0),"Address is zero.");
         return _balances[_owner];
@@ -31,54 +40,36 @@ contract ERC721 {
         return _owners[_tokenId];
     }
 
-
-
     function setApprovalForAll(address _operator, bool _approved) external {
         _operatorApprovals[msg.sender][_operator] = _approved;
         emit ApprovalForAll(msg.sender,_operator,_approved);
     }
     
-  
     function isApprovedForAll(address _owner, address _operator) public view returns (bool){
         return _operatorApprovals[_owner][_operator];
     }
 
-
-
-
-    function approve(address _approved, uint256 _tokenId) public payable{
+    function approve(address _approved, uint256 _tokenId) public isValidOperator(_tokenId) payable{
         address owner = ownerOf(_tokenId);
-        require(msg.sender == owner || isApprovedForAll(owner,msg.sender),"Msg.sender is not the owner or an approved operator.");
         _tokenApprovals[_tokenId] = _approved;
         emit Approval(owner,_approved,_tokenId);
     }
-
   
     function getApproved(uint256 _tokenId) public view isValidTokenId(_tokenId) returns (address){
         return _tokenApprovals[_tokenId];
     }
 
-
-
-    function transferFrom(address _from, address _to, uint256 _tokenId) public payable isValidTokenId(_tokenId) {
+    function transferFrom(address _from, address _to, uint256 _tokenId) public payable isValidOperator(_tokenId) isValidTokenId(_tokenId) {
         address owner = ownerOf(_tokenId);
-        require(
-            msg.sender == owner ||
-            getApproved(_tokenId) == msg.sender ||
-            isApprovedForAll(owner,msg.sender),
-            "Msg.sender is not the owner or approved for transfer."
-        );
         require(owner == _from,"From address is not the owner.");
         require(_to != address(0),"Address is zero.");
         //clear old approvals
         approve(address(0),_tokenId);
-
         //update balances
         _balances[_from] -= 1;
         _balances[_to] += 1;
         // changing ownership
         _owners[_tokenId] = _to;
-
         emit Transfer(_from,_to,_tokenId);
     }
 
@@ -90,13 +81,12 @@ contract ERC721 {
         safeTransferFrom(_from,_to,_tokenId,"");
     }
     
+    function supportsInterface(bytes4 _interfaceId) public pure virtual returns(bool){
+        return _interfaceId == 0x80ac58cd;
+    }
 
     function _checkOnERC721Received() internal pure returns(bool){
         return true;
     }
-    
-
-    function supportsInterface(bytes4 _interfaceId) public pure virtual returns(bool){
-        return _interfaceId == 0x80ac58cd;
-    }
+ 
 }
