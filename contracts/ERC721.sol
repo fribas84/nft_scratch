@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.2;
+pragma solidity ^0.8.20;
 import "hardhat/console.sol";
 
 contract ERC721 {
@@ -73,18 +73,12 @@ contract ERC721 {
         emit Transfer(_from,_to,_tokenId);
     }
 
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory _data) public payable {
-        transferFrom(_from,_to,_tokenId);
+
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public  payable  {
         require(_checkOnERC721Received(),"Receiver not implemented");
-    }
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public payable {
-        safeTransferFrom(_from,_to,_tokenId,"");
+        transferFrom(_from,_to,_tokenId);
     }
     
-    function supportsInterface(bytes4 _interfaceId) public pure virtual returns(bool){
-        return _interfaceId == 0x80ac58cd;
-    }
-
     function _checkOnERC721Received() internal pure returns(bool){
         return true;
     }

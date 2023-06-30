@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.2;
+pragma solidity ^0.8.20;
 
 import "./ERC721.sol";
 
@@ -33,7 +33,7 @@ contract SuperAvocado is ERC721 {
 
      
     // adding ERC721Metadata interface
-    function supportsInterface(bytes4 _interfaceId) public pure override returns(bool){
+    function supportsInterface(bytes4 _interfaceId) public pure  returns(bool){
         return _interfaceId == 0x80ac58cd || _interfaceId == 0x5b5e139f;
     }
 
