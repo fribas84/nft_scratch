@@ -1,4 +1,8 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config({ path: __dirname + "/.env" });
+
+
+const { MUMBAI_ALCHEMY, MUMBAI_PRIVATE, POLYGONAPISCAN } = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -14,6 +18,15 @@ module.exports = {
   gasReporter:{
     enabled:true,
   },
-
-
+  networks: {
+    mumbai: {
+      url: MUMBAI_ALCHEMY,
+      accounts: [MUMBAI_PRIVATE],
+    },
+  },
+  etherscan: {
+    apiKey: {
+      polygonMumbai: POLYGONAPISCAN,
+    },
+  }
 };
