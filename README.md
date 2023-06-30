@@ -1,6 +1,6 @@
 # NFT Scratch
 
-This is a custom implementation of [EIP-721] (https://eips.ethereum.org/EIPS/eip-721)
+This is a custom implementation of [EIP-721](https://eips.ethereum.org/EIPS/eip-721)
 
 The basic idea of this project is just educational puporses and is *not suitable for production*.
 
@@ -15,5 +15,5 @@ Run tests: `npx hardhat test`
 ## Deployment data
 The contract is deployed in Mumbai at 0xf8e9d61f2e7acf9ba77eea5b353e6b6bb2ff0826
 
-[Polygon Scan] (https://mumbai.polygonscan.com/address/0xf8e9d61f2e7acf9ba77eea5b353e6b6bb2ff0826)
-[OpenSea] (https://testnets.opensea.io/collection/super-avocado)
+- [Polygon Scan](https://mumbai.polygonscan.com/address/0xf8e9d61f2e7acf9ba77eea5b353e6b6bb2ff0826)
+- [OpenSea](https://testnets.opensea.io/collection/super-avocado)
