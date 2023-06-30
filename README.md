@@ -14,3 +14,7 @@ Run tests: `npx hardhat test`
 
 
 
+## Deployment data
+The contract is deployed in Mumbai at 0xf8e9d61f2e7acf9ba77eea5b353e6b6bb2ff0826
+
+https://mumbai.polygonscan.com/address/0xf8e9d61f2e7acf9ba77eea5b353e6b6bb2ff0826
