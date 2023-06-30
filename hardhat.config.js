@@ -7,7 +7,7 @@ const { MUMBAI_ALCHEMY, MUMBAI_PRIVATE, POLYGONAPISCAN } = process.env;
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
-    version: "0.8.20",
+    version: "0.8.19",
     settings:{
       optimizer:{
         enabled:true,

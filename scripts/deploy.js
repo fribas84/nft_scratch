@@ -15,9 +15,10 @@ async function main() {
 
   await superAvocado.waitForDeployment();
 
-  console.log("Contract deplot to:", superAvocado.target)};
+  console.log("Contract deploy to:", superAvocado.target);
   await superAvocado.mint(myTokenURI);
-
+  console.log("NFT Minted correctly");
+}
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {
