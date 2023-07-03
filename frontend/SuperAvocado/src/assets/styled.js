@@ -19,6 +19,7 @@ max-w-sm
 rounded
 overflow-hidden
 shadow-lg
+m-4
 `
 
 export const CardDiv = tw.div`
