@@ -1,4 +1,5 @@
-import Modal from 'react-modal';
+import { ButtonRed } from "../assets/styled";
+import Modal from "react-modal";
 
 
 const NFT_modal = ({ showModal, setShowModal, nft }) => {
@@ -17,11 +18,11 @@ const NFT_modal = ({ showModal, setShowModal, nft }) => {
                         <div className='self-center text-3xl font-semibold'>
                             {nft.name}
                         </div>
-                        <button
+                        <ButtonRed
                             onClick={handleClose}
                             className="fluid px-4 text-xl text-white bg-red-600 border-l mt-10 rounded-lg ml-2">
                             Close
-                        </button>
+                        </ButtonRed>
                     </div>
 
                 </Modal>

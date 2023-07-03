@@ -43,3 +43,21 @@ hover:-translate-y-1
 hover:scale-105
 duration-300
 `
+
+export const ButtonRed = tw.button`
+p-2
+text-xl
+text-white
+bg-red-600
+border-l
+rounded-lg
+shadow-xl
+w-full
+hover:bg-red-900
+transition
+ease-in-out
+delay-150
+hover:-translate-y-1 
+hover:scale-105
+duration-300
+`
