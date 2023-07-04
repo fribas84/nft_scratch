@@ -20,6 +20,7 @@ rounded
 overflow-hidden
 shadow-lg
 m-4
+bg-green-200
 `
 
 export const CardDiv = tw.div`
@@ -47,6 +48,7 @@ duration-300
 
 export const ButtonRed = tw.button`
 p-2
+m-5
 text-xl
 text-white
 bg-red-600
@@ -59,6 +61,7 @@ transition
 ease-in-out
 delay-150
 hover:-translate-y-1 
-hover:scale-105
+hover:scale-102
 duration-300
 `
+
