@@ -16,10 +16,11 @@ py-10
 
 export const Card = tw.div`
 max-w-sm
-rounded
+rounded-xl
 overflow-hidden
 shadow-lg
 m-4
+p-2
 bg-green-200
 `
 
