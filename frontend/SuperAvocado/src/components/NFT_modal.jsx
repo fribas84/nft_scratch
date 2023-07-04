@@ -1,4 +1,16 @@
-import { ButtonRed, ModalDefault, ModalHeader, ModalTitle, ModalClose, ModalContent, ModalImageContainer, Image, ModalContentCointainer, ModalContentHeader, DescriptionP } from "../assets/styled";
+import {ButtonRed, 
+        ModalDefault,
+        ModalHeader,
+        ModalTitle,
+        ModalClose,
+        ModalContent,
+        ModalImageContainer,
+        Image,
+        ModalContentCointainer,
+        ModalContentHeader,
+        DescriptionP,
+        ModalAtributesContainer,
+        ModalAttributeBox } from "../assets/styled";
 import Modal from "react-modal";
 
 
@@ -40,17 +52,17 @@ const NFT_modal = ({ showModal, setShowModal, nft }) => {
                                 <ModalContentHeader>
                                     Attributes:
                                 </ModalContentHeader>
-                                <div className="w-full flex flex-row flex-wrap justify-center">
+                                <ModalAtributesContainer>
                                     {nft.attributes &&
                                         nft.attributes.map((attribute, i) =>
-                                            <div className="flex m-4 p-2 border rounded-lg bg-green-300 border-green-500" key={i}>
-                                                <p className="text-l font-semibold m-0 inline">{attribute.trait_type}</p>
+                                            <ModalAttributeBox key={i}>
+                                                <p className="text-l font-semibold m-0 inline">{attribute.trait_type}: </p>
                                                 <p className="ml-2 float-right">{attribute.value}</p>
-                                            </div>
+                                            </ModalAttributeBox>
 
 
                                         )}
-                                </div>
+                                </ModalAtributesContainer>
 
 
                             </ModalContentCointainer>

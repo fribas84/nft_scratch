@@ -21,7 +21,13 @@ overflow-hidden
 shadow-lg
 m-4
 p-2
-bg-green-200
+bg-gray-200
+transition
+ease-in-out
+delay-150
+hover:-translate-y-1 
+hover:scale-110
+duration-300
 `
 
 export const CardDiv = tw.div`
@@ -38,7 +44,7 @@ border-l
 rounded-lg
 shadow-xl
 w-full
-hover:bg-green-900
+hover:bg-greem-900
 transition
 ease-in-out
 delay-150
@@ -73,7 +79,7 @@ max-w-6xl
 max-h-full
 shadow-2xl
 rounded-xl
-bg-green-200
+bg-gray-200
 `
 
 export const ModalHeader = tw.div`
@@ -102,8 +108,6 @@ m-1
 p-1
 text-xl
 ml-auto
-// inline-flex
-// items-center
 ease-in-out
 delay-150
 hover:-translate-y-1 
@@ -144,4 +148,21 @@ export const DescriptionP = tw.p`
 text-base
 leading-relaxed
 m-4
+`
+
+export const ModalAtributesContainer = tw.div`
+w-full
+flex
+flex-row
+flex-wrap
+justify-center
+`
+export const ModalAttributeBox = tw.div`
+flex
+m-4
+p-2
+border
+rounded-lg
+bg-white
+border-gray-500
 `
