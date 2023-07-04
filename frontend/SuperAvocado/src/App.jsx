@@ -1,9 +1,13 @@
+import { useState  } from "react";
 import { Container, H1 } from "./assets/styled";
 import NFT_Card from "./components/NFT_Card.jsx";
+import {ethers} from 'ethers';
+const axios = require('axios');
+
 function App() {
+  const [nfts, setNfts] = useState(initialNfts);
 
-
-  const nfts = [
+  const initialNfts = [
     {
     "name": "Avo Run",
     "description": "Introducing Avo Run, the mighty superhero avocado with lightning-fast speed and incredible strength.",
