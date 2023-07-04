@@ -166,3 +166,10 @@ rounded-lg
 bg-white
 border-gray-500
 `
+
+export const ModalTraitType = tw.p`
+text-l
+font-semibold
+mr-2
+inline
+`

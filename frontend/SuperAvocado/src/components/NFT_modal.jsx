@@ -10,9 +10,9 @@ import {ButtonRed,
         ModalContentHeader,
         DescriptionP,
         ModalAtributesContainer,
-        ModalAttributeBox } from "../assets/styled";
+        ModalAttributeBox, 
+        ModalTraitType} from "../assets/styled";
 import Modal from "react-modal";
-
 
 const NFT_modal = ({ showModal, setShowModal, nft }) => {
     const handleClose = () => {
@@ -56,23 +56,17 @@ const NFT_modal = ({ showModal, setShowModal, nft }) => {
                                     {nft.attributes &&
                                         nft.attributes.map((attribute, i) =>
                                             <ModalAttributeBox key={i}>
-                                                <p className="text-l font-semibold m-0 inline">{attribute.trait_type}: </p>
-                                                <p className="ml-2 float-right">{attribute.value}</p>
+                                                <ModalTraitType className="text-l font-semibold mr-2 inline">{attribute.trait_type}: </ModalTraitType>
+                                                <p>{attribute.value}</p>
                                             </ModalAttributeBox>
-
-
                                         )}
                                 </ModalAtributesContainer>
-
-
                             </ModalContentCointainer>
-
                         </ModalContent>
-
                         <div className="flex items-center border-t border-gray-600 rounded-b">
                             <ButtonRed
                                 onClick={handleClose}
-                                className="fluid text-xl text-white bg-red-600 border-l rounded-lg">
+                               >
                                 Close
                             </ButtonRed>
                         </div>
