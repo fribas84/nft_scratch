@@ -116,6 +116,8 @@ duration-300
 `
 export const ModalContent = tw.div`
 flex
+sm:flex-row
+flex-col
 `
 
 export const ModalImageContainer = tw.div`
@@ -128,6 +130,8 @@ export const Image = tw.img`
 w-full
 h-full
 rounded-xl
+sm:flex-row
+flex-col
 `
 
 export const ModalContentCointainer = tw.div`
